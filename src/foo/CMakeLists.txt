@@ -22,3 +22,39 @@ target_sources(foo
         private_foo.h
         private_foo.cpp
 )
+
+###########################################################################################################
+
+# Create a private test.
+add_executable(foo-test)
+
+# Set the private header path.
+target_include_directories(foo-test
+    PRIVATE
+        $<TARGET_PROPERTY:foo,INCLUDE_DIRECTORIES>
+)
+
+# Set test files.
+target_sources(foo-test
+    PRIVATE
+        private_foo_test.cpp
+)
+
+# Link the corresponding libraries.
+target_link_libraries(foo-test
+    PRIVATE
+        # Link public libraries.
+        foo
+        # Link private libraries.
+        $<TARGET_PROPERTY:foo,LINK_LIBRARIES>
+)
+
+# Link GoogleTest.
+target_link_libraries(foo-test
+    PRIVATE
+        ${GTEST_LIBS}
+        ${GMOCK_LIBS}
+)
+
+# Add the test with CTest.
+gtest_discover_tests(foo-test)
