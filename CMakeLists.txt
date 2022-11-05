@@ -31,3 +31,6 @@ set(CMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
 
 # Process source files.
 add_subdirectory(src)
+
+# Process public tests.
+add_subdirectory(tests)
