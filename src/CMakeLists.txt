@@ -9,3 +9,9 @@ target_sources(${CMAKE_PROJECT_NAME}
 
 # Process libraries.
 add_subdirectory(foo)
+
+# Link libraries.
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    PRIVATE
+        foo
+)
