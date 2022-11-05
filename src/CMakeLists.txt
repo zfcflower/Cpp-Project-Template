@@ -6,3 +6,6 @@ target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
         main.cpp
 )
+
+# Process libraries.
+add_subdirectory(foo)
